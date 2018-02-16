@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
 /*
  * Customer array (customers) 0: first name
  * 						   1: last name
@@ -15,6 +16,7 @@ import javax.swing.JTextField;
  *                         3: phone Number
  *       - max 6 checkouts at once
  */
+
 public class window {
 	public static String[][] customers = {{"",""}};
 	public static int numCustomerFields = 10;
@@ -86,7 +88,7 @@ public class window {
 			e.printStackTrace();
 		}
 	}
-	static class Action1 implements ActionListener {        
+	static class login implements ActionListener {        
 		public void actionPerformed (ActionEvent e) {  
 			String ID = employeeID.getText();
 			String s_password = password.getText();
@@ -117,34 +119,41 @@ public class window {
 			}
 		}
 	}   
-	public static void runWindow(){
+	public static void runWindow(){ //setting up main page GUI and running it
+        final String idFieldStr = "Employee ID";
+		final Font font = new Font("Calibri", Font.PLAIN, 25);
+        final String passwordFieldStr = "Password";
+        
+        
+        JLabel textLabel2 = new JLabel(passwordFieldStr);
+        JLabel textLabel = new JLabel(idFieldStr);
+        
+        JButton button = new JButton("Login");
+        JPanel panel = new JPanel();
 		frame = new JFrame("");
 		frame.setVisible(true);
 		frame.setSize(700,800);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		int x = frame.getWidth()/2;
 		int y = frame.getHeight()/2;
-		JPanel panel = new JPanel();
+        
+        
+		
 		frame.add(panel);
 		panel.setLayout(null);
-		JButton button = new JButton("Login");
+		
 		panel.add(button);
 		button.setBounds(x-55,y+140,100,50);
-		button.addActionListener (new Action1());
+		button.addActionListener (new login());
 		employeeID = new JTextField();
 		panel.add(employeeID);
 		employeeID.setBounds(x-100,y-150,200,30);
 		password = new JTextField();
 		panel.add(password);
 		password.setBounds(x-100,y-10,200,30);
-		String textMessage = "Employee ID";
-		Font font = new Font("Calibri", Font.PLAIN, 25);
-		JLabel textLabel = new JLabel(textMessage);
 		textLabel.setFont(font);
 		panel.add(textLabel);
 		textLabel.setBounds(x-65,y-200,150,30);
-		String textMessage2 = "Password";
-		JLabel textLabel2 = new JLabel(textMessage2);
 		textLabel2.setFont(font);
 		panel.add(textLabel2);
 		textLabel2.setBounds(x-55,y-55,150,30);
